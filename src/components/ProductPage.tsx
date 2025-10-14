@@ -1,7 +1,7 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
 import AdminLayout from "@/components/AdminLayout";
-import { CreateFoodDialog } from "@/components/CreateFoodDialog";
+
 import {
   Dialog,
   DialogContent,
@@ -45,7 +45,7 @@ export default function ProductPage() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        newCategory,
+       categoryName: newCategory,
       }),
     });
     setModalOpen(false);
@@ -53,7 +53,7 @@ export default function ProductPage() {
   };
 
   const deleteCategoryHandler = async (id:string) => {
-     if (!confirm("Are you sure you want to delete this category?")) return;
+    //  if (!confirm("Are you sure you want to delete this category?")) return;
 
     await fetch(`http://localhost:4000/api/category?id=${id}`, {
       method: "DELETE",
@@ -67,12 +67,12 @@ export default function ProductPage() {
       <div className="flex flex-wrap gap-2 ml-5">
         {categories?.map((category) => (
           <div
-            className="flex items-center border-2 rounded-full p-2 py-0"
+            className="flex items-center border-2 rounded-full p-2 py-0 font-medium text-[14px]"
             key={category._id}
           >
             {category.categoryName}
             <X
-              className="hover:bg-gray-400/20 w-4"
+              className="hover:bg-gray-400/20 w-4 mt-1 ml-1"
               onClick={() => deleteCategoryHandler(category._id)}
             />
           </div>

@@ -15,8 +15,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { X } from "lucide-react";
 
+export type CategoryType = {
+  categoryName: string;
+  _id: string;
+};
+
 export default function ProductPage() {
-  const [categories, setCategories] = useState<string[]>([]);
+  const [categories, setCategories] = useState<CategoryType[]>([]);
   const [newCategory, setNewCategory] = useState<string | undefined>();
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
@@ -40,27 +45,26 @@ export default function ProductPage() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        categoryName: newCategory,
+        newCategory,
       }),
     });
     setModalOpen(false);
     await getCategories();
   };
 
-  const deleteCategoryHandler = async (category: string) => {
-    await fetch("http://localhost:4000/api/category/delete", {
-      method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(category),
+  const deleteCategoryHandler = async (id:string) => {
+     if (!confirm("Are you sure you want to delete this category?")) return;
+
+    await fetch(`http://localhost:4000/api/category?id=${id}`, {
+      method: "DELETE",
     });
+
+    await getCategories();
   };
 
   return (
     <div>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2 ml-5">
         {categories?.map((category) => (
           <div
             className="flex items-center border-2 rounded-full p-2 py-0"
@@ -69,7 +73,7 @@ export default function ProductPage() {
             {category.categoryName}
             <X
               className="hover:bg-gray-400/20 w-4"
-              onClick={() => deleteCategoryHandler(category)}
+              onClick={() => deleteCategoryHandler(category._id)}
             />
           </div>
         ))}

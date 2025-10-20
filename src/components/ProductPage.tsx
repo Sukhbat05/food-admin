@@ -45,14 +45,14 @@ export default function ProductPage() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-       categoryName: newCategory,
+        categoryName: newCategory,
       }),
     });
     setModalOpen(false);
     await getCategories();
   };
 
-  const deleteCategoryHandler = async (id:string) => {
+  const deleteCategoryHandler = async (id: string) => {
     //  if (!confirm("Are you sure you want to delete this category?")) return;
 
     await fetch(`http://localhost:4000/api/category?id=${id}`, {

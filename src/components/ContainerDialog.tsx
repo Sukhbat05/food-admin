@@ -31,7 +31,7 @@ const ContainerDialog = () => {
   const [price, setPrice] = useState(0);
   const [ingredients, setIngredients] = useState("");
   const [category, setCategory] = useState("68eeffcbd5fdbd319a11f9d4");
-  const [image, setImage] = useState("");
+const [image, setImage] = useState<File | null>(null);
   const [responseMessage, setResponseMessage] = useState("");
   const [foods, setFoods] = useState<Food[]>([]);
 
@@ -142,13 +142,15 @@ const ContainerDialog = () => {
               <div>
                 <Label htmlFor="name-1"> Food image</Label>
 
-                <input
-                  className=" w-93 h-[138px] bg-blue-200 mt-5  border"
-                  type="file"
-                  value={image}
-                  onChange={(e) => setImage(e.target.value)}
-                  required
-                ></input>
+              <input
+  type="file"
+  className="w-93 h-[138px] bg-blue-200 mt-5 border"
+  onChange={(e) => {
+    const file = e.target.files?.[0];
+    if (file) setImage(file);
+  }}
+  required
+/>
               </div>
 
               <DialogFooter>

@@ -3,7 +3,6 @@ import AdminLayout from "@/components/AdminLayout";
 import ContainerDialog from "@/components/ContainerDialog";
 
 import DishesCategory from "@/components/DishesCategory";
-import { mockFoods } from "@/mock/mockData";
 
 export default function Home() {
   return (

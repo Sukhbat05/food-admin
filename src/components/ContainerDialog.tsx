@@ -31,11 +31,9 @@ const ContainerDialog = () => {
   const [price, setPrice] = useState(0);
   const [ingredients, setIngredients] = useState("");
   const [category, setCategory] = useState("68eeffcbd5fdbd319a11f9d4");
-<<<<<<< HEAD
-const [image, setImage] = useState<File | null>(null);
-=======
+
   const [image, setImage] = useState<File | null>(null);
->>>>>>> 210dfc2cd90f618a764c5f34564c449773f9e458
+
   const [responseMessage, setResponseMessage] = useState("");
   const [foods, setFoods] = useState<Food[]>([]);
 
@@ -148,17 +146,6 @@ const [image, setImage] = useState<File | null>(null);
                 <div>
                   <Label htmlFor="name-1"> Food image</Label>
 
-<<<<<<< HEAD
-              <input
-  type="file"
-  className="w-93 h-[138px] bg-blue-200 mt-5 border"
-  onChange={(e) => {
-    const file = e.target.files?.[0];
-    if (file) setImage(file);
-  }}
-  required
-/>
-=======
                   <Input
                     className=" w-105 h-[138px] bg-blue-200 mt-5  border"
                     type="file"
@@ -200,7 +187,6 @@ const [image, setImage] = useState<File | null>(null);
                     <FiEdit2 color="red" />
                   </Button>
                 </div>
->>>>>>> 210dfc2cd90f618a764c5f34564c449773f9e458
               </div>
 
               <div className="flex justify-between items-center">

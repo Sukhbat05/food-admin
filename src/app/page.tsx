@@ -1,9 +1,8 @@
 import AdminLayout from "@/components/AdminLayout";
 
 import ContainerDialog from "@/components/ContainerDialog";
-import AddFoodForm from "@/components/CreateFoodDialog";
+
 import DishesCategory from "@/components/DishesCategory";
-import { mockFoods } from "@/mock/mockData";
 
 export default function Home() {
   return (
